@@ -16,12 +16,14 @@
 
 (defn firstFreqTwice 
   [freqs]
-  (loop [currFreq 0 [currNewFreq & restNewFreqs] freqs freqCounts {}]  
-    (let [appliedCurrFreqCount (inc (get freqCounts currFreq 0))]
-      (if (= 2 appliedCurrFreqCount) 
-        currFreq
-        (let [freqToLoop (if (nil? restNewFreqs) freqs restNewFreqs)]
-          (recur (+ currFreq currNewFreq) freqToLoop (into freqCounts [{currFreq appliedCurrFreqCount}])))))))
+  (let [freqStream (cycle freqs)]
+    (loop [total 0 
+          [currFreq & restFreqs] freqStream 
+          freqCounts {}]  
+      (let [totalCount (inc (get freqCounts total 0))]
+        (if (= 2 totalCount) 
+          total
+          (recur (+ total currFreq) restFreqs (into freqCounts [{total totalCount}])))))))
 
 (def inputFile "01_input.txt")
 
