@@ -21,9 +21,8 @@
       (if (= 2 appliedCurrFreqCount) 
         currFreq
         ;TODO Simplify this guy
-        (if (nil? restNewFreqs) 
-          (recur (+ currFreq currNewFreq) freqs (into freqCounts [{currFreq appliedCurrFreqCount}]))
-          (recur (+ currFreq currNewFreq) restNewFreqs (into freqCounts [{currFreq appliedCurrFreqCount}])))))))
+        (let [freqToLoop (if (nil? restNewFreqs) freqs restNewFreqs)]
+          (recur (+ currFreq currNewFreq) freqToLoop (into freqCounts [{currFreq appliedCurrFreqCount}])))))))
 
 (def inputFile "01_input.txt")
 
