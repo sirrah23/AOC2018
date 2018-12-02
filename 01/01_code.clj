@@ -20,7 +20,6 @@
     (let [appliedCurrFreqCount (inc (get freqCounts currFreq 0))]
       (if (= 2 appliedCurrFreqCount) 
         currFreq
-        ;TODO Simplify this guy
         (let [freqToLoop (if (nil? restNewFreqs) freqs restNewFreqs)]
           (recur (+ currFreq currNewFreq) freqToLoop (into freqCounts [{currFreq appliedCurrFreqCount}])))))))
 
