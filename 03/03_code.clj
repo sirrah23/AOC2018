@@ -9,8 +9,6 @@
         j (range l)]
     [(+ x i) (+ y j)]))
 
-;(into #{} (reduce concat [] (map #(apply pts %) [[1 3 4 4] [3 1 4 4] [5 5 2 2]])))
-
 (def parseInt #(Integer/parseInt %))
 
 (defn parseLine
@@ -22,15 +20,29 @@
   [fs]
   (count (filter #(> % 1) (vals fs))))
 
-(defn computeMultiClaim
+(defn computeClaimOverlaps
   ([claims]
-   (computeMultiClaim claims {}))
+   (computeClaimOverlaps claims {}))
   ([[claim & restClaims] counts]
    (if (nil? claim)
-     (countDupVals counts)
+     counts
      (let [ptsForClaim (apply pts claim)]
        (recur restClaims (merge-with + counts (frequencies ptsForClaim)))))))
 
+(defn allOnes
+  [line freqs]
+  (every? #(= 1 %) (map #(get freqs %) line)))
+
 (def inputFile "03_input.txt")
 
-(println (computeMultiClaim (map parseLine (getLines inputFile))))
+(defn threeA []
+  (countDupVals (computeClaimOverlaps (map parseLine (getLines inputFile)))))
+
+(defn threeB []
+  (let [lines (map parseLine (getLines inputFile))
+        overlaps (computeClaimOverlaps lines)]
+    (first (filter #(allOnes (apply pts %) overlaps) lines))))
+
+(println ( threeA ))
+
+(println ( threeB ))
