@@ -1,7 +1,6 @@
-(defn getLines
-  [fname]
-  (with-open [rdr (clojure.java.io/reader fname)]
-    (doall (line-seq rdr))))
+(ns day03.day03)
+(require 'util.core)
+(refer 'util.core)
 
 (defn pts
   [x y w l]
@@ -33,7 +32,7 @@
   [line freqs]
   (every? #(= 1 %) (map #(get freqs %) line)))
 
-(def inputFile "03_input.txt")
+(def inputFile "./src/day03/day03_input.txt")
 
 (defn threeA []
   (countDupVals (computeClaimOverlaps (map parseLine (getLines inputFile)))))

@@ -1,7 +1,6 @@
-(defn getLines
-  [fname]
-  (with-open [rdr (clojure.java.io/reader fname)]
-    (doall (line-seq rdr))))
+(ns day02.day02)
+(require 'util.core)
+(refer 'util.core)
 
 (defn getCharFrequencies
   [str]
@@ -33,7 +32,7 @@
               :when (= 1 (strDiff lineA lineB))]
           [lineA lineB])))
 
-(def inputFile "02_input.txt")
+(def inputFile "./src/day02/day02_input.txt")
 
 (println (twoThreeProduct (getLines inputFile)))
 

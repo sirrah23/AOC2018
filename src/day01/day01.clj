@@ -1,7 +1,6 @@
-(defn getLines 
-  [fname]
-  (with-open [rdr (clojure.java.io/reader fname)]
-      (doall (line-seq rdr))))
+(ns one.one_code)
+(require 'util.core)
+(refer 'util.core)
 
 (defn toInt 
   [freqStr]
@@ -25,7 +24,7 @@
           total
           (recur (+ total currFreq) restFreqs (into freqCounts [{total totalCount}])))))))
 
-(def inputFile "01_input.txt")
+(def inputFile "./src/day01/day01_input.txt")
 
 ; Answer to part A
 (println (sum (map toInt (getLines inputFile))))
