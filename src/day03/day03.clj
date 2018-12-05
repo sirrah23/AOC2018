@@ -1,6 +1,5 @@
-(ns day03.day03)
-(require 'util.core)
-(refer 'util.core)
+(ns day03.day03
+  (:require [util.core :as util]))
 
 (defn pts
   [x y w l]
@@ -35,10 +34,10 @@
 (def inputFile "./src/day03/day03_input.txt")
 
 (defn threeA []
-  (countDupVals (computeClaimOverlaps (map parseLine (getLines inputFile)))))
+  (countDupVals (computeClaimOverlaps (map parseLine (util/getLines inputFile)))))
 
 (defn threeB []
-  (let [lines (map parseLine (getLines inputFile))
+  (let [lines (map parseLine (util/getLines inputFile))
         overlaps (computeClaimOverlaps lines)]
     (first (filter #(allOnes (apply pts %) overlaps) lines))))
 

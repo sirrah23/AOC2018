@@ -1,6 +1,5 @@
-(ns one.one_code)
-(require 'util.core)
-(refer 'util.core)
+(ns one.one_code
+  (:require [util.core :as util]))
 
 (defn toInt 
   [freqStr]
@@ -27,7 +26,7 @@
 (def inputFile "./src/day01/day01_input.txt")
 
 ; Answer to part A
-(println (sum (map toInt (getLines inputFile))))
+(println (sum (map toInt (util/getLines inputFile))))
 
 ;Answer to part B
-(println (firstFreqTwice (map toInt (getLines inputFile))))
+(println (firstFreqTwice (map toInt (util/getLines inputFile))))

@@ -1,6 +1,5 @@
-(ns day02.day02)
-(require 'util.core)
-(refer 'util.core)
+(ns day02.day02
+  (:require [util.core :as util]))
 
 (defn getCharFrequencies
   [str]
@@ -34,6 +33,6 @@
 
 (def inputFile "./src/day02/day02_input.txt")
 
-(println (twoThreeProduct (getLines inputFile)))
+(println (twoThreeProduct (util/getLines inputFile)))
 
-(println (oneCharDiff (getLines inputFile)))
+(println (oneCharDiff (util/getLines inputFile)))
