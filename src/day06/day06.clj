@@ -73,3 +73,13 @@
     [(parseInt x) (parseInt y)]))
 
 (println (getLargestAreaSize (vec (map parsePoint (util/getLines inputFile)))))
+
+(defn totalManhattanDistance [refPt compPts]
+  (reduce + (map #(manhattanDist refPt %) compPts)))
+
+(defn totalDistanceInLimit
+  [limit pts]
+  (let [grid (getGrid (computeSize pts))]
+    (count (filter #(< % limit) (map #(totalManhattanDistance % pts) grid)))))
+
+(println (totalDistanceInLimit 10000 (vec (map parsePoint (util/getLines inputFile)))))
